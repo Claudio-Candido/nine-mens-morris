@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nine Men's Morris - Jogo da Trilha / Moinho</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Trilha <span>(Nine Men's Morris)</span></h1>
+            <p class="subtitle">Jogo de Estratégia Milenar em Python + Flask</p>
+        </header>
+
+        <main class="game-layout">
+            <!-- Sidebar / Player Status -->
+            <aside class="panel info-panel">
+                <div class="player-card" id="card-p1">
+                    <div class="player-header">
+                        <span class="piece-icon piece-p1"></span>
+                        <div class="player-title">
+                            <h3>Jogador 1</h3>
+                            <span class="player-color">Brancas</span>
+                        </div>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Não colocadas:</span>
+                            <span class="stat-value" id="p1-unplaced">9</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">No tabuleiro:</span>
+                            <span class="stat-value" id="p1-board">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Fase:</span>
+                            <span class="stat-value phase-badge" id="p1-phase">Fase 1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="status-banner" id="status-banner">
+                    <p id="status-message">Carregando o jogo...</p>
+                </div>
+
+                <div class="player-card" id="card-p2">
+                    <div class="player-header">
+                        <span class="piece-icon piece-p2"></span>
+                        <div class="player-title">
+                            <h3>Jogador 2</h3>
+                            <span class="player-color">Pretas</span>
+                        </div>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Não colocadas:</span>
+                            <span class="stat-value" id="p2-unplaced">9</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">No tabuleiro:</span>
+                            <span class="stat-value" id="p2-board">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Fase:</span>
+                            <span class="stat-value phase-badge" id="p2-phase">Fase 1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="btn-reset" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                        Reiniciar Partida
+                    </button>
+                    <button id="btn-rules" class="btn btn-secondary">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        Regras do Jogo
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Board -->
+            <section class="panel board-panel">
+                <div class="board-wrapper">
+                    <svg id="board-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"></svg>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>Nine Men's Morris · Trilha / Moinho · Feito com Flask</p>
+        </footer>
+    </div>
+
+    <!-- Rules Modal -->
+    <div id="rules-modal" class="modal">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close">&times;</button>
+            <h2>Regras da Trilha</h2>
+            <div class="rules-body">
+                <h3>Objetivo</h3>
+                <p>Formar <strong>moinhos</strong> (3 peças alinhadas) e remover as peças do adversário. Vence quem deixar o oponente com menos de 3 peças ou sem movimentos possíveis.</p>
+                <h3>Fase 1 — Colocação</h3>
+                <p>Cada jogador coloca 9 peças, alternadamente, em casas vazias. Ao formar um moinho, remove uma peça adversária (preferencialmente fora de moinho).</p>
+                <h3>Fase 2 — Movimento</h3>
+                <p>Mova uma peça para uma casa <strong>adjacente</strong> livre. Formar moinho → remover peça do oponente.</p>
+                <h3>Fase 3 — Voo</h3>
+                <p>Com apenas 3 peças, pode saltar para <strong>qualquer</strong> casa livre.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
